@@ -6,11 +6,14 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.document_loaders import TextLoader, PyMuPDFLoader, Docx2txtLoader
+import pysqlite3
+import sys
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+import chromadb
 import os
 import dotenv
 import shutil
 from groq import Groq
-
 
 # Load environment variables
 dotenv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.env"))
